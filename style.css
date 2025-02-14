@@ -174,7 +174,9 @@ body {
 
 /* Different view modes */
 .projects-container.grid {
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+    gap: 1rem;
 }
 
 .projects-container.list {
@@ -409,4 +411,27 @@ body[data-theme="cyber"] {
 .dropdown:hover .dropbtn {
     background: var(--hacker-green);
     color: #000;
+}
+
+.dragging {
+    opacity: 0.5;
+    transform: scale(0.9);
+}
+
+.centered-card {
+    transition: transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28),
+        opacity 0.3s ease;
+    z-index: 1000;
+    transform-origin: center;
+    animation: pulse-glow 1s infinite alternate;
+}
+
+@keyframes pulse-glow {
+    0% {
+        box-shadow: 0 0 10px rgba(0, 255, 0, 0.3);
+    }
+
+    100% {
+        box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
+    }
 }

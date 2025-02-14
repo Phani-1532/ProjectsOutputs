@@ -1,0 +1,292 @@
+{
+  "projects": [
+    {
+      "title": "NEURAL CHAT v2.0",
+      "tech": [
+        "PYTHON",
+        "TENSORFLOW",
+        "WEBRTC"
+      ],
+      "description": "ENCRYPTED AI COMMUNICATION PLATFORM WITH END-TO-END SECURITY",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "CRYPTO EXCHANGE",
+      "tech": [
+        "BLOCKCHAIN",
+        "SOLIDITY",
+        "REACT"
+      ],
+      "description": "DECENTRALIZED TRADING PLATFORM WITH SMART CONTRACTS",
+      "year": "2023",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "CYBER DASHBOARD v3.5",
+      "tech": [
+        "WEBGL",
+        "THREE.JS",
+        "WEBSOCKETS"
+      ],
+      "description": "REAL-TIME DATA VISUALIZATION PLATFORM WITH 3D RENDERING",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "NEON NFT MARKET",
+      "tech": [
+        "IPFS",
+        "SOLANA",
+        "METAMASK"
+      ],
+      "description": "DIGITAL ART MARKETPLACE WITH CRYPTO PAYMENTS",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "QUANTUM SIMULATOR",
+      "tech": [
+        "QISKIT",
+        "PYTHON",
+        "CLOUD COMPUTING"
+      ],
+      "description": "QUANTUM CIRCUIT SIMULATION IN HYBRID CLOUD ENVIRONMENT",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "DRONE SWARM CTL",
+      "tech": [
+        "ROS2",
+        "COMPUTER VISION",
+        "5G"
+      ],
+      "description": "AUTONOMOUS DRONE COORDINATION SYSTEM WITH AI ROUTING",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "DEEPFAKE DETECTOR",
+      "tech": [
+        "PYTORCH",
+        "GANs",
+        "OPENCV"
+      ],
+      "description": "AI-POWERED MEDIA AUTHENTICATION SYSTEM",
+      "year": "2023",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "METAVERSE SDK",
+      "tech": [
+        "WEBXR",
+        "BLENDER",
+        "SPATIAL OS"
+      ],
+      "description": "CROSS-PLATFORM VIRTUAL WORLD DEVELOPMENT KIT",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "EDGE AI PROCESSOR",
+      "tech": [
+        "FPGA",
+        "TINYML",
+        "EDGE IMPULSE"
+      ],
+      "description": "LOW-POWER EMBEDDED MACHINE LEARNING ACCELERATOR",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "CRYPTO BRIDGE",
+      "tech": [
+        "COSMOS SDK",
+        "IBC",
+        "ZK-SNARKS"
+      ],
+      "description": "CROSS-CHAIN ASSET TRANSFER PROTOCOL",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "NEURO INTERFACE",
+      "tech": [
+        "BCI",
+        "EMOTIV",
+        "PYTHON"
+      ],
+      "description": "BRAIN-COMPUTER INTERFACE FOR COGNITIVE ANALYSIS",
+      "year": "2023",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "DEFI AGGREGATOR",
+      "tech": [
+        "WEB3.JS",
+        "THE GRAPH",
+        "CHAINLINK"
+      ],
+      "description": "MULTI-CHAIN LIQUIDITY OPTIMIZATION ENGINE",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "ROBO ADVISOR",
+      "tech": [
+        "ML",
+        "NLP",
+        "RECOMMENDATION SYSTEMS"
+      ],
+      "description": "AI-DRIVEN FINANCIAL PORTFOLIO MANAGEMENT SYSTEM",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "SMART CITY OS",
+      "tech": [
+        "IOT",
+        "DIGITAL TWIN",
+        "KAFKA"
+      ],
+      "description": "URBAN INFRASTRUCTURE MANAGEMENT PLATFORM",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "CRYPTO VAULT",
+      "tech": [
+        "MULTISIG",
+        "HSM",
+        "AIR-GAPPED"
+      ],
+      "description": "ENTERPRISE-GRADE DIGITAL ASSET STORAGE SOLUTION",
+      "year": "2023",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "AI COMPILER",
+      "tech": [
+        "LLVM",
+        "MLIR",
+        "TPU"
+      ],
+      "description": "NEURAL NETWORK OPTIMIZATION FRAMEWORK",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "QUANTUM KEY DIST",
+      "tech": [
+        "QKD",
+        "POST-QUANTUM",
+        "CRYPTO"
+      ],
+      "description": "QUANTUM-RESISTANT COMMUNICATION PROTOCOL",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "FEDERATED LEARNING",
+      "tech": [
+        "PYSYFT",
+        "DIFFERENTIAL PRIVACY",
+        "TEE"
+      ],
+      "description": "PRIVACY-PRESERVING DISTRIBUTED ML FRAMEWORK",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "SPACE NETWORK",
+      "tech": [
+        "SDR",
+        "SATCOM",
+        "MESH"
+      ],
+      "description": "LOW-EARTH ORBIT COMMUNICATION PROTOCOL",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "CRYPTO GAMING",
+      "tech": [
+        "UNITY",
+        "NFT",
+        "WEB3"
+      ],
+      "description": "PLAY-TO-EARN BLOCKCHAIN GAMING PLATFORM",
+      "year": "2023",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "AI AUDITOR",
+      "tech": [
+        "NLP",
+        "SMART CONTRACTS",
+        "SECURITY"
+      ],
+      "description": "AUTOMATED CODE VULNERABILITY DETECTION SYSTEM",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "NEUROMORPHIC CHIP",
+      "tech": [
+        "VLSI",
+        "SPIKING NN",
+        "ANALOG"
+      ],
+      "description": "BIOLOGICALLY-INSPIRED AI PROCESSOR ARCHITECTURE",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "DECENTRALIZED VPN",
+      "tech": [
+        "P2P",
+        "WIREGUARD",
+        "BLOCKCHAIN"
+      ],
+      "description": "PRIVACY-FOCUSED NETWORKING SOLUTION",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    },
+    {
+      "title": "AI SATELLITE",
+      "tech": [
+        "CUDA",
+        "ONNX",
+        "EDGE COMPUTING"
+      ],
+      "description": "ORBITAL IMAGE PROCESSING WITH NEURAL ACCELERATION",
+      "year": "2024",
+      "link": "#",
+      "demo": "#"
+    }
+  ]
+}
