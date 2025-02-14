@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <title>Project Matrix</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+
+<body>
+    <div class="matrix-bg"></div>
+
+    <div class="controls">
+        <div class="navbar">
+            <div class="view-switcher">
+                <button data-view="grid" class="active">🔲 GRID</button>
+                <button data-view="list">📜 LIST</button>
+                <button data-view="sphere">🌐 SPHERE</button>
+            </div>
+            <div class="dropdown">
+                <button class="dropbtn">🌓 THEMES</button>
+                <div class="dropdown-content">
+                    <button data-theme="matrix">Matrix</button>
+                    <button data-theme="hacker">Hacker</button>
+                    <button data-theme="cyber">Cyber</button>
+                </div>
+            </div>
+            <div class="search-box">
+                <input type="text" placeholder="SEARCH PROJECTS..." id="searchInput">
+            </div>
+        </div>
+    </div>
+    <div class="projects-container" id="projects"></div>
+
+    <script src="app.js"></script>
+</body>
+
+</html>
