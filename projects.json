@@ -1,16 +1,16 @@
 {
   "projects": [
     {
-      "title": "NEURAL CHAT v2.0",
+      "title": "CRYPTO CURRENCY INFO",
       "tech": [
-        "PYTHON",
-        "TENSORFLOW",
-        "WEBRTC"
+        "HTML&CSS",
+        "REACT JS",
+        "API"
       ],
-      "description": "ENCRYPTED AI COMMUNICATION PLATFORM WITH END-TO-END SECURITY",
+      "description": "A PLATFORM PROVIDING REAL-TIME CRYPTOCURRENCY DATA WITH RANKINGS.",
       "year": "2024",
-      "link": "#",
-      "demo": "#"
+      "link": "https://github.com/Phani-1532/cryptoapp.git",
+      "demo": "https://crypto-app-de26d.web.app"
     },
     {
       "title": "CRYPTO EXCHANGE",

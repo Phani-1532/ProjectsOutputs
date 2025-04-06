@@ -1,36 +1,35 @@
 document.addEventListener('DOMContentLoaded', () => {
     const container = document.getElementById('projects');
+    let projectsData = []; // Store projects globally for dynamic updates
 
     // Fetch projects from JSON file
     fetch('projects.json')
         .then(response => response.json())
         .then(data => {
-            // Initialize with fetched projects
-            initializeApp(data.projects);
+            projectsData = data.projects;
+            initializeApp(projectsData);
         })
-        .catch(error => console.error('Error loading projects:', error));
+        .catch(error => {
+            console.error('Error loading projects:', error);
+            // Fallback futuristic message
+            container.innerHTML = '<p class="error-glow">Transmission Failed: Projects Offline</p>';
+        });
 
     function initializeApp(projects) {
-        const container = document.getElementById('projects');
-
-        // Add these variables at the top of the initializeApp function
         let isDragging = false;
         let currentDragIndex = -1;
-        let initialX = 0;
-        let initialY = 0;
-        let xOffset = 0;
-        let yOffset = 0;
+        let initialX = 0, initialY = 0, xOffset = 0, yOffset = 0;
+
+        // Create futuristic particle background
+        createParticleBackground();
 
         function createProjectCard(project, index) {
             const card = document.createElement('div');
             card.className = 'project-card';
-            card.dataset.index = index; // Store index for drag-and-drop
+            card.dataset.index = index;
 
-
-
-            // Existing content setup...
-            card.innerHTML += `
-                <h3>${project.title}</h3>
+            card.innerHTML = `
+                <h3 class="holo-title">${project.title}</h3>
                 <div class="tech-stack">
                     ${project.tech.map(t => `<span class="tech-item">${t}</span>`).join('')}
                 </div>
@@ -44,51 +43,58 @@ document.addEventListener('DOMContentLoaded', () => {
                 </div>
             `;
 
+            // Button click with futuristic animation
             card.querySelectorAll('.demo-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     e.stopPropagation();
                     const link = btn.dataset.link;
+                    btn.classList.add('pulse-activate');
+                    setTimeout(() => btn.classList.remove('pulse-activate'), 300);
                     if (link && link !== '#') {
                         window.open(link, '_blank');
                     } else {
-                        btn.textContent = "COMING SOON";
+                        btn.textContent = "INITIALIZING...";
                         btn.disabled = true;
                         setTimeout(() => {
                             const btnType = btn.dataset.type;
-                            btn.textContent = btnType === 'repo' ? 'REPO GENERATED' : 'LINK GENERATED';
+                            btn.textContent = btnType === 'repo' ? 'REPO ONLINE' : 'DEMO DEPLOYED';
                             btn.disabled = false;
-                            btn.style.backgroundColor = "rgba(0, 255, 0, 0.1)";
-                            btn.style.borderColor = "#0f05";
-                            btn.style.color = "#0f0";
-                            btn.disabled = true;
-                        }, 2000);
+                            btn.classList.add('active');
+                        }, 1500);
                     }
                 });
             });
 
+            // Card click for holographic zoom
             card.addEventListener('click', (e) => {
                 if (!e.target.closest('.demo-btn')) {
-                    card.classList.add('active');
-                    setTimeout(() => card.classList.remove('active'), 500);
+                    card.classList.toggle('holo-zoom');
+                    if (card.classList.contains('holo-zoom')) {
+                        container.appendChild(card); // Bring to front
+                    }
                 }
             });
 
-            // Add this inside the createProjectCard function before return card
             card.draggable = true;
             card.style.cursor = 'grab';
-
-            // Add drag event handlers to the card
             card.addEventListener('dragstart', handleDragStart);
             card.addEventListener('dragend', handleDragEnd);
 
             return card;
         }
 
-        projects.forEach(project => {
-            container.appendChild(createProjectCard(project));
-        });
+        // Dynamic card generation with entry animation
+        function renderProjects(filteredProjects = projects) {
+            container.innerHTML = '';
+            filteredProjects.forEach((project, index) => {
+                const card = createProjectCard(project, index);
+                container.appendChild(card);
+                setTimeout(() => card.classList.add('card-appear'), index * 100); // Staggered entry
+            });
+        }
+        renderProjects();
 
-        // View mode handling
+        // View mode handling with transitions
         const viewButtons = document.querySelectorAll('[data-view]');
         const searchInput = document.getElementById('searchInput');
         let currentView = 'grid';
@@ -96,197 +102,174 @@ document.addEventListener('DOMContentLoaded', () => {
         viewButtons.forEach(button => {
             button.addEventListener('click', () => {
                 const view = button.dataset.view;
-
-                // Update active state
                 viewButtons.forEach(btn => btn.classList.remove('active'));
                 button.classList.add('active');
-
-                // Apply view mode
                 container.className = `projects-container ${view}`;
                 currentView = view;
 
                 if (view === 'sphere') {
                     arrangeInSphere();
                 } else {
-                    // Reset positioning for grid/list views
                     Array.from(container.children).forEach(card => {
                         card.style.transform = '';
                         card.style.position = '';
                         card.style.zIndex = '';
+                        card.classList.remove('holo-zoom');
                     });
                 }
             });
         });
 
-        // Search functionality
+        // Enhanced search with predictive filtering
         searchInput.addEventListener('input', (e) => {
             const term = e.target.value.toLowerCase();
-            const cards = container.children;
-
-            Array.from(cards).forEach(card => {
-                const title = card.querySelector('h3').textContent.toLowerCase();
-                const tech = card.querySelector('.tech-stack').textContent.toLowerCase();
-                const description = card.querySelector('p').textContent.toLowerCase();
-                const matches = title.includes(term) || tech.includes(term) || description.includes(term);
-                card.style.display = matches ? '' : 'none';
-            });
-
-            if (currentView === 'sphere') {
-                arrangeInSphere();
-            }
+            const filtered = projects.filter(p => 
+                p.title.toLowerCase().includes(term) ||
+                p.tech.join(' ').toLowerCase().includes(term) ||
+                p.description.toLowerCase().includes(term)
+            );
+            renderProjects(filtered);
+            if (currentView === 'sphere') arrangeInSphere();
         });
 
-        // Enhanced sphere arrangement
+        // Futuristic sphere arrangement with rotation
         function arrangeInSphere() {
-            const cards = Array.from(container.children)
-                .filter(c => c.style.display !== 'none' && !c.classList.contains('centered-card'));
-
+            const cards = Array.from(container.children).filter(c => !c.classList.contains('holo-zoom'));
             const containerRect = container.getBoundingClientRect();
             const radius = Math.min(containerRect.width * 0.4, 500);
             const centerX = containerRect.width / 2;
             const centerY = containerRect.height / 2;
 
             cards.forEach((card, i) => {
-                const angle = (Math.PI * 2 * i) / cards.length;
+                const angle = (Math.PI * 2 * i) / cards.length + (Date.now() * 0.0001); // Slow rotation
                 const x = Math.cos(angle) * radius;
                 const y = Math.sin(angle) * radius;
 
-                card.style.transform = `translate(
-                    ${centerX + x - card.offsetWidth / 2}px, 
-                    ${centerY + y - card.offsetHeight / 2}px
-                )`;
+                card.style.transform = `translate(${centerX + x - card.offsetWidth / 2}px, ${centerY + y - card.offsetHeight / 2}px) rotateY(${angle * 10}deg)`;
                 card.style.position = 'absolute';
                 card.style.zIndex = i;
-                card.classList.remove('centered-card');
             });
+
+            requestAnimationFrame(arrangeInSphere); // Continuous animation
         }
 
-        // Handle window resize
-        window.addEventListener('resize', () => {
-            if (currentView === 'sphere') {
-                arrangeInSphere();
-            }
-        });
-
-        // Initial arrangement based on current view
-        if (currentView === 'sphere') {
-            arrangeInSphere();
-        }
-
-        // Update theme initialization
-        initializeThemeSwitcher();
-
-        // Add these new functions inside initializeApp
+        // Drag handlers with futuristic snap
         function handleDragStart(e) {
             if (currentView !== 'sphere') return;
-
             isDragging = true;
             const card = e.target.closest('.project-card');
             card.style.cursor = 'grabbing';
             card.style.transition = 'none';
-
             initialX = e.clientX - xOffset;
             initialY = e.clientY - yOffset;
-
-            if (e.target === card) {
-                currentDragIndex = parseInt(card.dataset.index);
-            }
+            currentDragIndex = parseInt(card.dataset.index);
+            e.dataTransfer.setData('text/plain', currentDragIndex);
         }
 
         function handleDragEnd(e) {
             if (currentView !== 'sphere') return;
-
             const card = e.target.closest('.project-card');
-            if (!card || !isDragging) return;
-
             isDragging = false;
             card.style.cursor = 'grab';
-            card.style.transition = 'transform 0.3s ease';
+            card.style.transition = 'transform 0.5s ease-out';
 
-            // Get container dimensions and position
             const containerRect = container.getBoundingClientRect();
-            const containerCenterX = containerRect.left + containerRect.width / 2;
-            const containerCenterY = containerRect.top + containerRect.height / 2;
-
-            // Get card position relative to viewport
+            const centerX = containerRect.width / 2;
+            const centerY = containerRect.height / 2;
             const cardRect = card.getBoundingClientRect();
-            const cardCenterX = cardRect.left + cardRect.width / 2;
-            const cardCenterY = cardRect.top + cardRect.height / 2;
+            const distance = Math.hypot(
+                (cardRect.left + cardRect.width / 2) - (containerRect.left + centerX),
+                (cardRect.top + cardRect.height / 2) - (containerRect.top + centerY)
+            );
 
-            // Calculate distance from container center
-            const dx = cardCenterX - containerCenterX;
-            const dy = cardCenterY - containerCenterY;
-            const distance = Math.sqrt(dx * dx + dy * dy);
-
-            // Use DataTransfer API for proper drop handling
             if (distance < 150) {
-                const dataTransfer = e.dataTransfer;
-                dataTransfer.dropEffect = 'move';
-                // Calculate new position relative to container
-                const newX = containerRect.width / 2 - cardRect.width / 2;
-                const newY = containerRect.height / 2 - cardRect.height / 2;
-
-                card.style.transform = `translate(${newX}px, ${newY}px)`;
+                card.style.transform = `translate(${centerX - card.offsetWidth / 2}px, ${centerY - card.offsetHeight / 2}px) scale(1.2)`;
                 card.style.zIndex = 9999;
-                card.classList.add('centered-card');
-
-                // Add physics-like animation
-                card.style.transition = 'transform 0.5s cubic-bezier(0.18, 0.89, 0.32, 1.28)';
+                card.classList.add('holo-zoom');
             } else {
-                // Return to sphere with smooth transition
-                card.style.transition = 'transform 0.5s ease-out';
                 arrangeInSphere();
             }
         }
 
-        function handleDragOver(e) {
-            e.preventDefault();
-            e.dataTransfer.dropEffect = 'move';
+        container.addEventListener('dragover', e => e.preventDefault());
+        container.addEventListener('drop', handleDragEnd);
+
+        // Voice command support (futuristic feature)
+        if ('webkitSpeechRecognition' in window) {
+            const recognition = new webkitSpeechRecognition();
+            recognition.continuous = false;
+            recognition.interimResults = false;
+
+            recognition.onresult = (event) => {
+                const command = event.results[0][0].transcript.toLowerCase();
+                if (command.includes('grid')) viewButtons[0].click();
+                if (command.includes('list')) viewButtons[1].click();
+                if (command.includes('sphere')) viewButtons[2].click();
+                if (command.includes('search')) {
+                    const term = command.split('search')[1]?.trim();
+                    if (term) searchInput.value = term;
+                    searchInput.dispatchEvent(new Event('input'));
+                }
+            };
+
+            const voiceBtn = document.createElement('button');
+            voiceBtn.textContent = '🎙️ VOICE';
+            voiceBtn.className = 'demo-btn';
+            document.querySelector('.search-box').appendChild(voiceBtn);
+            voiceBtn.addEventListener('click', () => recognition.start());
         }
 
-        function handleDrop(e) {
-            e.preventDefault();
-            const containerRect = container.getBoundingClientRect();
-            const dropX = e.clientX - containerRect.left;
-            const dropY = e.clientY - containerRect.top;
+        // Particle background generator
+        function createParticleBackground() {
+            const canvas = document.createElement('canvas');
+            canvas.className = 'particle-bg';
+            document.body.appendChild(canvas);
+            const ctx = canvas.getContext('2d');
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
 
-            // Calculate center position
-            const centerX = containerRect.width / 2;
-            const centerY = containerRect.height / 2;
+            const particles = Array.from({ length: 100 }, () => ({
+                x: Math.random() * canvas.width,
+                y: Math.random() * canvas.height,
+                size: Math.random() * 3 + 1,
+                speed: Math.random() * 2 + 0.5
+            }));
 
-            if (Math.abs(dropX - centerX) < 100 && Math.abs(dropY - centerY) < 100) {
-                const draggedIndex = e.dataTransfer.getData('text/plain');
-                const draggedCard = container.children[draggedIndex];
-
-                // Animate to center
-                draggedCard.style.transform = `translate(${centerX - draggedCard.offsetWidth / 2}px, 
-                    ${centerY - draggedCard.offsetHeight / 2}px)`;
-                draggedCard.classList.add('centered-card');
+            function animateParticles() {
+                ctx.clearRect(0, 0, canvas.width, canvas.height);
+                particles.forEach(p => {
+                    p.y += p.speed;
+                    if (p.y > canvas.height) p.y = 0 - p.size;
+                    ctx.fillStyle = 'rgba(0, 255, 0, 0.7)';
+                    ctx.beginPath();
+                    ctx.arc(p.x, p.y, p.size, 0, Math.PI * 2);
+                    ctx.fill();
+                });
+                requestAnimationFrame(animateParticles);
             }
+            animateParticles();
+
+            window.addEventListener('resize', () => {
+                canvas.width = window.innerWidth;
+                canvas.height = window.innerHeight;
+            });
         }
 
-        // Add container as a drop zone
-        container.addEventListener('dragover', handleDragOver);
-        container.addEventListener('drop', handleDrop);
+        initializeThemeSwitcher();
+        if (currentView === 'sphere') arrangeInSphere();
     }
 
-    // Keep these functions outside the initializeApp if they need to be called later
     function initializeThemeSwitcher() {
         const savedTheme = localStorage.getItem('portfolioTheme') || 'matrix';
         document.documentElement.setAttribute('data-theme', savedTheme);
 
         document.querySelectorAll('.dropdown-content button').forEach(btn => {
-            if (btn.dataset.theme === savedTheme) {
-                btn.innerHTML = `✓ ${btn.textContent}`;
-            }
-
+            if (btn.dataset.theme === savedTheme) btn.innerHTML = `✓ ${btn.textContent}`;
             btn.addEventListener('click', (e) => {
                 e.preventDefault();
                 const theme = btn.dataset.theme;
                 document.documentElement.setAttribute('data-theme', theme);
                 localStorage.setItem('portfolioTheme', theme);
-
-                // Update checkmarks
                 document.querySelectorAll('.dropdown-content button').forEach(b => {
                     b.innerHTML = b.textContent.replace('✓ ', '');
                 });
@@ -295,5 +278,3 @@ document.addEventListener('DOMContentLoaded', () => {
         });
     }
 });
-
-// Add this CSS to your stylesheet

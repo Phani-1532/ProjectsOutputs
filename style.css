@@ -435,3 +435,62 @@ body[data-theme="cyber"] {
         box-shadow: 0 0 30px rgba(0, 255, 0, 0.7);
     }
 }
+
+/* Futuristic card entry animation */
+.card-appear {
+    animation: cardEntry 0.8s ease-out forwards;
+}
+@keyframes cardEntry {
+    0% { transform: translateY(100vh) scale(0.5); opacity: 0; }
+    100% { transform: translateY(0) scale(1); opacity: 1; }
+}
+
+/* Holographic zoom effect */
+.holo-zoom {
+    transform: scale(1.5) translateZ(100px);
+    z-index: 1000;
+    box-shadow: 0 0 30px var(--hacker-green), 0 0 60px var(--hacker-green);
+    background: rgba(0, 30, 0, 0.95);
+    animation: holoPulse 2s infinite;
+}
+@keyframes holoPulse {
+    0%, 100% { filter: brightness(1); }
+    50% { filter: brightness(1.5); }
+}
+
+/* Pulse effect for buttons */
+.pulse-activate {
+    animation: pulseButton 0.3s;
+}
+@keyframes pulseButton {
+    0% { transform: scale(1); }
+    50% { transform: scale(1.1); }
+    100% { transform: scale(1); }
+}
+
+/* Particle background */
+.particle-bg {
+    position: fixed;
+    top: 0;
+    left: 0;
+    z-index: -2;
+    opacity: 0.2;
+}
+
+/* Holographic title */
+.holo-title {
+    text-shadow: 0 0 10px var(--hacker-green), 0 0 20px var(--hacker-green);
+    animation: flicker 4s infinite;
+}
+@keyframes flicker {
+    0%, 100% { opacity: 1; }
+    50% { opacity: 0.8; }
+}
+
+/* Error message glow */
+.error-glow {
+    color: var(--hacker-green);
+    text-align: center;
+    font-size: 1.5rem;
+    animation: flicker 2s infinite;
+}
